@@ -9,13 +9,13 @@ INSTANCE_STORE_PREFIX='i3\.|d2\.|h1\.|m5d\.|m5ad\.|m5dn\.|c5d\.|p3dn\.|g4dn\.|f1
 
 # get region list 
 region_list=`aws ec2 describe-regions \
-    --all-regions \
+    --no-all-regions \
     --query "Regions[].{Name:RegionName}" \
     --region us-east-1 \
     --output text`
 
 
-echo 'Id\t\t\tAZ\t\tInstance_Type\t\tStatus' > $OUTPUT_FILE_PATH_ALL
+echo 'Id    AZ  Instance_Type   Status' > $OUTPUT_FILE_PATH_ALL
 
 # query instances in each region
 
@@ -32,11 +32,11 @@ cat $OUTPUT_FILE_PATH_ALL | grep -E $INSTANCE_STORE_PREFIX > $OUTPUT_FILE_PATH_I
 cnt=`cat $OUTPUT_FILE_PATH_INSTANCESTORE | wc -l`
 
 if [ $cnt -gt 0 ]; then
-    echo "\n---------------------------------------------------------------------"
+    echo "#####################################################################"
     echo "Instance with instance store is list below"
     echo "PS. You can also find the content in $OUTPUT_FILE_PATH_INSTANCESTORE"
-    echo "---------------------------------------------------------------------\n"
+    echo "#####################################################################"
     cat $OUTPUT_FILE_PATH_INSTANCESTORE
 else
-    echo "\nNo instance with instance store is found in the current account\n"
+    echo "No instance with instance store is found in the current account"
 fi
