@@ -4,7 +4,7 @@
 OUTPUT_FILE_PATH_ALL=/tmp/ec2_all.list
 OUTPUT_FILE_PATH_INSTANCESTORE=/tmp/iec2_with_instance_store.list
 
-
+# may need to be updated 
 INSTANCE_STORE_PREFIX='i3\.|d2\.|h1\.|m5d\.|m5ad\.|m5dn\.|c5d\.|p3dn\.|g4dn\.|f1\.|r5d\.|r5ad\.|r5dn\.|x1\.|z1d\.'
 
 # get region list 
@@ -20,6 +20,7 @@ echo 'Id    AZ  Instance_Type   Status' > $OUTPUT_FILE_PATH_ALL
 # query instances in each region
 
 for region in $region_list; do
+    echo "starts filtering instances in ${region} ..."
     aws ec2 describe-instances \
         --query 'Reservations[].Instances[].[InstanceId, Placement.AvailabilityZone,InstanceType,State.Name]' \
         --region $region \
