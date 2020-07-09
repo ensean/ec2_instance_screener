@@ -20,7 +20,7 @@ echo 'Id    AZ  Instance_Type   Status' > $OUTPUT_FILE_PATH_ALL
 # query instances in each region
 
 for region in $region_list; do
-    echo "starts filtering instances in ${region} ..."
+    echo "Filtering instances in region ${region} ..."
     aws ec2 describe-instances \
         --query 'Reservations[].Instances[].[InstanceId, Placement.AvailabilityZone,InstanceType,State.Name]' \
         --region $region \
