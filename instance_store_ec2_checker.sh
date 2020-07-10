@@ -2,7 +2,7 @@
 # query ec2 instance with instance store in every region
 # instance store types
 OUTPUT_FILE_PATH_ALL=/tmp/ec2_all.list
-OUTPUT_FILE_PATH_INSTANCESTORE=/tmp/iec2_with_instance_store.list
+OUTPUT_FILE_PATH_INSTANCESTORE=/tmp/ec2_with_instance_store.list
 
 # may need to be updated 
 INSTANCE_STORE_PREFIX='i3\.|d2\.|h1\.|m5d\.|m5ad\.|m5dn\.|c5d\.|p3dn\.|g4dn\.|f1\.|r5d\.|r5ad\.|r5dn\.|x1\.|z1d\.'
