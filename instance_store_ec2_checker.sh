@@ -7,11 +7,15 @@ OUTPUT_FILE_PATH_INSTANCESTORE=/tmp/iec2_with_instance_store.list
 # may need to be updated 
 INSTANCE_STORE_PREFIX='i3\.|d2\.|h1\.|m5d\.|m5ad\.|m5dn\.|c5d\.|p3dn\.|g4dn\.|f1\.|r5d\.|r5ad\.|r5dn\.|x1\.|z1d\.'
 
+# get current region from metadata
+current_region=`curl -s http://169.254.169.254/latest/dynamic/instance-identity/document | grep '\"region\"' | cut -d\" -f4`
+
+
 # get region list 
 region_list=`aws ec2 describe-regions \
     --no-all-regions \
     --query "Regions[].{Name:RegionName}" \
-    --region us-east-1 \
+    --region $current_region \
     --output text`
 
 
